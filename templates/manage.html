@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% block main_content %}
+{% block addl_css %}
+<script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='manage.css') }}">
+{% endblock %}
+
+<div class="table-responsive">
+  <h3>Invited Participants</h3>
+  <ol class="list-group participants invited">
+    <!-- List of invited participants -->
+    {% for participant in invitedParticipants %}
+    {% set user = participant["user"] %}
+    <li class="list-group-item d-flex justify-content-between align-items-start">
+      <div class="ms-2 me-auto name-container">
+        <div class="profile-pic">
+          <span class="imgHelper"></span>
+          <img class="rounded-circle" src="{{user['profile_pic']}}" width="55" />
+        </div>
+        <div class="name">{{user['name']}}</div>
+        <div class="email">{{user['email']}}</div>
+      </div>
+      <div class="btn-group status">
+        <button type="button" class="btn btn-danger notify-button" onclick="notify(`{{user['email']}}`, `{{roomID}}`)"
+          aria-expanded="false">
+          Notify again
+        </button>
+      </div>
+    </li>
+    {% endfor %}
+  </ol>
+  <hr>
+  <h3>Participants in Queue</h3>
+
+  <ol class="list-group participants not-invited">
+    <!-- List of participants not yet invited -->
+    {% for participant in uninvitedParticipants %}
+    {% set user = participant["user"] %}
+    <li class="list-group-item d-flex justify-content-between align-items-start">
+      <div class="queue-position">{{participant["queuePosition"]}}</div>
+      <div class="ms-2 me-auto name-container">
+        <div class="profile-pic">
+          <span class="imgHelper"></span>
+          <img class="rounded-circle" src="{{user['profile_pic']}}" width="55" />
+        </div>
+        <div class="name">{{user['name']}}</div>
+        <div class="email">{{user['email']}}</div>
+      </div>
+      <div class="btn-group status">
+        <button type="button" class="btn btn-danger invite-button" onclick="invite(`{{user['email']}}`, `{{roomID}}`)"
+          aria-expanded="false">
+          Invite
+        </button>
+      </div>
+    </li>
+    {% endfor %}
+  </ol>
+</div>
+
+<script>
+  async function invite(email, roomID) {
+    var not_invited = document.getElementById("not-invited");
+    var invited = document.getElementById("invited");
+    console.log("Starting invite");
+    const rawResponse = await fetch('/invite', {
+      method: 'POST',
+      dataType: 'json',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ "email": email, "roomID": roomID })
+    })
+    .then(res => res.json())
+      .then((json) => {
+        alert(json["result"]);
+      })
+      .then(() => {
+        window.location.reload(true);
+      })
+  }
+
+  async function notify(email, roomID) {
+    const rawResponse = await fetch('/notify', {
+      method: 'POST',
+      dataType: 'json',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ "email": email, "roomID": roomID })
+    })
+      .then(res => res.json())
+      .then((json) => {
+        alert(json["result"]);
+      })
+      .then(() => {
+        window.location.reload(true);
+      })
+  }
+</script>
+{% endblock %}

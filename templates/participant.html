@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block main_content %}
+<div class="row">
+  <div class="col-8">
+    <div class="course-queue">
+      <h4>Room Name: <em>{{name}}</em></h4>
+      <h4>Date: {{start_date}}</h4>
+    </div>
+    <br />
+    <div class="queue-position">
+      Your position in the queue 👉 <span id="queuePosition">{{queuePosition}}</span>.<br /><br />
+      <img class="rounded-circle" src={{interviewer_profile_pic}} width="70">
+      Your Interviewer is <em>{{interviewer_name}}</em>.
+    </div>
+  </div>
+  <div class="col">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Announcement</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Your meet is scheduled that day</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<br /><br />
+<div class="meet-link">Meet link: <a href="{{meeting_link}}">{{meeting_link}}</a></div>
+{% endblock %}

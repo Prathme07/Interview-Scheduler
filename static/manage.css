@@ -1,0 +1,71 @@
+.participants {
+    width: 60%;
+    margin: 0 auto;
+}
+.name-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+      "profile-pic name name name"
+      "profile-pic name name name"
+      "profile-pic name name name"
+      "profile-pic email email email"
+      "profile-pic email email email";
+}
+  
+.profile-pic { 
+    grid-area: profile-pic;
+    white-space: nowrap;
+    margin-right: 5px;
+}
+
+.imgHelper {
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
+img {
+    vertical-align: middle;
+}
+  
+.name { 
+    grid-area: name;
+    font-size: 1.4em;
+    font-weight: 600;
+    text-align: left;
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+}
+  
+.email { 
+    grid-area: email;
+    text-align:left;
+    display: flex;
+    justify-content: flex-start;
+    align-content: center;
+    flex-direction: column;
+}
+
+.queue-position {
+    text-align: center;
+    top:0;
+    bottom: 0;
+    margin: auto 0;
+    vertical-align: middle;
+}
+
+.status {
+    margin: 10px;
+}
+
+.notify {
+    margin: 10px;
+}
+
+.feedback {
+    background-color: white;
+}
