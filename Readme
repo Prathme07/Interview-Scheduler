@@ -1,0 +1,46 @@
+# Receptionist
+
+**Receptionist** is a web application designed to notify you when it's your turn for an interview, helping to manage and streamline virtual interview queues efficiently.
+
+## 📋 Description
+
+Managing queues for virtual interviews can be challenging, especially when interviewees are delayed or take longer than expected. This disrupts the schedule and creates confusion for others in the queue.
+
+**Receptionist** addresses these issues by:
+- Showing a pop-up message when it's your turn.
+- Sending an email notification when the interviewer invites you to join the meeting.
+- Allowing you to check your position in the queue, so you can better plan your schedule.
+
+## 🚀 Usage
+
+1. Log in to the website using your registered email ID.
+2. Check your position in the queue.
+3. Wait for your turn and enjoy the smooth interview experience!
+
+## 🛠 Tech Stack
+
+- **Frontend**: HTML, CSS, JavaScript
+- **Backend**: Flask, Socket.IO, MongoDB, Redis
+
+## 🗄 Database Structure
+
+The database consists of three MongoDB collections:
+
+1. **Users**: Stores information about the users.
+2. **Rooms**: Stores information about the interview rooms.
+3. **Participants**: Stores information about participants, linked to room IDs.
+
+## 📦 How To Run
+
+1. Install Redis from [redis.io](https://redis.io/).
+2. Start Redis on your local machine.
+3. Create a `constants.py` file with the following credentials:
+   ```python
+   ATLAS_ADMIN_PWD = ""
+   GOOGLE_CLIENT_ID = "xxx.apps.googleusercontent.com"
+   GOOGLE_SECRET = ""
+   GOOGLE_DISCOVERY_URL = "https://accounts.google.com/.well-known/openid-configuration"
+   MJ_API_KEY = ''
+   MJ_API_SECRET = ''
+   EMAIL_ID = 'xxx@gmail.com'
+   EMAIL_PASSWORD = ''
