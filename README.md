@@ -48,14 +48,5 @@ EMAIL_PASSWORD = ''
 7. Install `requirements.txt`.
 8. Run `run.sh`.
 
-## BUGS
 
-Only works on localhost currently ! SocketIO doesn't work on deployement (due to unavailability of Redis on heroku, currently working on docker to ease the set up.) 🚨
 
-## Video
-
-https://www.youtube.com/watch?v=DP3tGE-A8H0
-
-## License
-
-[MIT](https://choosealicense.com/licenses/mit/)
